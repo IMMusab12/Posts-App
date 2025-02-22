@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+  * {
+   
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+
+  body {
+
+    color: #333;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #1a73e8;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  form {
+    background-color: rgba(255, 255, 255, 0);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s;
+  }
+
+  input[type="text"]:focus,
+  textarea:focus {
+    border-color: #1a73e8;
+    outline: none;
+  }
+
+  textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  button[type="submit"] {
+    background-color: #1a73e8;
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  button[type="submit"]:hover {
+    background-color: #0c47a1;
+    transform: translateY(-2px);
+  }
+
+  #go-to-dashboard-btn {
+    background-color: #4caf50;
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+  }
+
+  #go-to-dashboard-btn:hover {
+    background-color: #357a38;
+    transform: translateY(-2px);
+  }
+
+  /* Media Queries for Responsiveness */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 28px;
+    }
+
+    form {
+      padding: 16px;
+      max-width: 90%; /* Reduce width for tablets */
+    }
+
+    input[type="text"],
+    textarea {
+      font-size: 14px;
+      padding: 8px;
+    }
+
+    button[type="submit"],
+    #go-to-dashboard-btn {
+      font-size: 14px;
+      padding: 10px 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 24px;
+    }
+
+    form {
+      padding: 12px;
+      max-width: 100%; /* Full width for small screens */
+    }
+
+    input[type="text"],
+    textarea {
+      font-size: 12px;
+      padding: 6px;
+    }
+
+    button[type="submit"],
+    #go-to-dashboard-btn {
+      font-size: 12px;
+      padding: 8px 16px;
+    }
+  }
+  </style>
+  <title>My Post</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <h1>My Post</h1>
+  <form id="post-form">
+    <input type="text" id="post-title" placeholder="Enter Post Title" required><br>
+    <textarea id="post-description" placeholder="Enter Post Description" required></textarea><br>
+    <button type="submit">Submit Post</button>
+  </form>
+  <button id="go-to-dashboard-btn">Go to Dashboard</button>
+
+  <script type="module" src="../firebase-config.js"></script>
+  <script type="module" src="../js/firestore.js"></script>
+</body>
+</html>

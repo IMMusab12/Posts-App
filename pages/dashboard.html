@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <title>FB Clone - Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Sigmar&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: "Inter", serif;
+    }
+  
+    #dashboard-container {
+      background-color: rgb(92, 25, 25);
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap; /* Allow items to wrap */
+      gap: 10px;
+      box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+      margin-top: -19px;
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+    }
+  
+    #dashboard-container button {
+      margin: 8px;
+      background-color: #ff0000;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 8px 9px 5px 4px rgba(255, 255, 255, 0.2);
+      flex: 1 1 auto; /* Allows buttons to resize on smaller screens */
+      min-width: 120px;
+    }
+      
+    #dashboard-container button:hover {
+      margin: 8px;
+      background-color: #081b50;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 8px 9px 5px 4px rgba(255, 255, 255, 0.2);
+      flex: 1 1 auto; /* Allows buttons to resize on smaller screens */
+      min-width: 120px;
+    }
+  
+  
+    #header-container {
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      padding: 10px;
+    }
+  
+    #posts-header {
+      font-size: 32px;
+      font-weight: bold;
+      color: #9c5151;
+      text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+      padding: 10px 20px;
+    }
+  
+    /* Post card styles */
+    .post-item {
+      background-color: #7e0f0f1f;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+      font-family: Arial, sans-serif;
+      border: 1px solid #e0e0e0;
+      width: 600px;
+      margin-left: 580px;
+    }
+  
+    .post-item h3 {
+      color: #521515;
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+  
+    .post-item p {
+      color: #555555;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+  
+    /* Avatar and header */
+    .post-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+  
+    .post-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #ddd;
+    }
+  
+    /* Heading styles */
+    h2 {
+      font-size: 28px;
+      font-weight: bold;
+      color: #1a73e8;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+      margin-top: 40px;
+      padding: 10px 0;
+      text-align: center;
+      border-bottom: 2px solid #ffffff;
+    }
+  
+    /* Media queries for responsiveness */
+    @media (max-width: 768px) {
+      #dashboard-container {
+        flex-direction: column; /* Stack buttons vertically on smaller screens */
+        gap: 15px;
+      }
+  
+      #posts-header {
+        font-size: 24px; /* Smaller font size for headers */
+      }
+  
+      .post-item {
+        padding: 15px;
+        margin: 15px 0;
+      }
+  
+      .post-item h3 {
+        font-size: 20px;
+      }
+  
+      .post-item p {
+        font-size: 14px;
+      }
+  
+      h2 {
+        font-size: 24px;
+      }
+    }
+  
+    @media (max-width: 480px) {
+      #dashboard-container button {
+        padding: 10px 18px;
+        font-size: 14px; /* Smaller button text */
+      }
+  
+      .post-item h3 {
+        font-size: 18px;
+      }
+  
+      .post-item p {
+        font-size: 12px;
+      }
+  
+      h2 {
+        font-size: 20px;
+      }
+    }
+  </style
+  </style>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <div id="dashboard-container">
+    <button id="logout-btn">Logout</button>
+    <button id="mypost-btn">My Post</button>
+    <button id="userpost-btn">User Post</button>
+  </div>
+  <div id="header-container">
+    <h1 id="posts-header">All your posts will be displayed here</h1>
+  </div>
+
+  
+  <!-- Section for My Posts -->
+  <h2>My Posts</h2>
+  <div id="mypost-list-container"></div>
+
+  <!-- Section for User Posts -->
+  <h2>User Posts</h2>
+  <div id="userpost-list-container"></div>
+
+  <script type="module" src="../firebase-config.js"></script>
+  <script type="module">
+   import { auth, db } from "../firebase-config.js";
+import { collection, getDocs } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+// Navigation
+document.getElementById("mypost-btn").addEventListener("click", () => {
+  window.location.href = "mypost.html";
+});
+document.getElementById("userpost-btn").addEventListener("click", () => {
+  window.location.href = "userpost.html";
+});
+
+// Logout functionality
+document.getElementById("logout-btn").addEventListener("click", async () => {
+  try {
+    await auth.signOut();
+    // Display SweetAlert
+    Swal.fire({
+      title: "Success",
+      text: "Logged out successfully!",
+      icon: "success",
+      confirmButtonText: "OK",
+      confirmButtonColor: "#1a73e8"
+    }).then(() => {
+      // Redirect after confirmation
+      window.location.href = "../index.html";
+    });
+  } catch (error) {
+    Swal.fire({
+      title: "Error",
+      text: "Error: " + error.message,
+      icon: "error",
+      confirmButtonText: "OK",
+      confirmButtonColor: "#d33"
+    });
+  }
+})
+
+// Function to fetch and display "My Posts"
+async function fetchMyPosts() {
+  const myPostContainer = document.getElementById("mypost-list-container");
+  myPostContainer.innerHTML = ""; // Clear previous content
+
+  try {
+    const querySnapshot = await getDocs(collection(db, "myposts"));
+    querySnapshot.forEach((doc) => {
+      const postData = doc.data();
+      const postElement = document.createElement("div");
+      postElement.classList.add("post-item");
+      postElement.innerHTML = `
+        <h3>${postData.title}</h3>
+        <p>${postData.description}</p>
+        <small>Posted on: ${new Date(postData.timestamp).toLocaleString()}</small>
+      `;
+      myPostContainer.appendChild(postElement);
+
+      const hr = document.createElement("hr");
+      myPostContainer.appendChild(hr);
+      
+    });
+  } catch (error) {
+    console.error("Error fetching my posts: ", error);
+  }
+}
+
+// Function to fetch and display "User Posts"
+async function fetchUserPosts() {
+  const userPostContainer = document.getElementById("userpost-list-container");
+  userPostContainer.innerHTML = ""; // Clear previous content
+
+  try {
+    const querySnapshot = await getDocs(collection(db, "userposts"));
+    querySnapshot.forEach((doc) => {
+      const postData = doc.data();
+      const postElement = document.createElement("div");
+      postElement.classList.add("post-item");
+      postElement.innerHTML = `
+        <h3>${postData.title}</h3>
+        <p>${postData.description}</p>
+        <small>Posted on: ${new Date(postData.timestamp).toLocaleString()}</small>
+      `;
+      userPostContainer.appendChild(postElement);
+
+      // Add horizontal line after each post
+      const hr = document.createElement("hr");
+      userPostContainer.appendChild(hr)
+
+    });
+  } catch (error) {
+    console.error("Error fetching user posts: ", error);
+  }
+}
+
+// Call both functions to fetch and display posts
+fetchMyPosts();
+fetchUserPosts();
+
+
+  </script>
+</body>
+</html>
